@@ -2,7 +2,9 @@
 
 package software.bluelib.event;
 
+import net.minecraft.network.chat.ChatType;
 import net.minecraft.network.chat.Component;
+import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -35,6 +37,13 @@ public class ChatHandler {
      */
     @SubscribeEvent
     public static void onServerChat(ServerChatEvent pEvent) {
+        Component originalMessage = pEvent.getMessage();
+        Component formattedMessage = MarkdownParser.parseMarkdown(originalMessage);
+        pEvent.setMessage(formattedMessage);
+    }
+
+    @SubscribeEvent
+    public static void onChatReceived(ClientChatReceivedEvent pEvent) {
         Component originalMessage = pEvent.getMessage();
         Component formattedMessage = MarkdownParser.parseMarkdown(originalMessage);
         pEvent.setMessage(formattedMessage);
