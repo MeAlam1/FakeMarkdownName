@@ -105,7 +105,13 @@ public class IsValidUtils {
         String argbPattern = "\\(\\s*\\d{1,3}\\s*,\\s*\\d{1,3}\\s*,\\s*\\d{1,3}\\s*,\\s*\\d{1,3}\\s*\\)";
         String hexPattern = "^#([0-9A-Fa-f]{6})$";
         String hex0xPattern = "^0x([0-9A-Fa-f]{6})$";
+        String simpleHexPattern = "^[0-9A-Fa-f]{6}$";
 
-        return pInput.matches(rgbPattern) || pInput.matches(argbPattern) || pInput.matches(hexPattern) || pInput.matches(hex0xPattern);
+        return pInput.matches(rgbPattern) ||
+                pInput.matches(argbPattern) ||
+                pInput.matches(hexPattern) ||
+                pInput.matches(hex0xPattern) ||
+                pInput.matches(simpleHexPattern);
     }
+
 }

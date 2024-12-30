@@ -47,6 +47,7 @@ public class ColorConversionUtils {
         String argbPattern = "\\(\\s*(\\d{1,3})\\s*,\\s*(\\d{1,3})\\s*,\\s*(\\d{1,3})\\s*,\\s*(\\d{1,3})\\s*\\)";
         String hexPattern = "^#([0-9A-Fa-f]{6})$";
         String hex0xPattern = "^0x([0-9A-Fa-f]{6})$";
+        String simpleHexPattern = "^[0-9A-Fa-f]{6}$";
 
         if (pInput.matches(rgbPattern)) {
             Matcher matcher = Pattern.compile(rgbPattern).matcher(pInput);
@@ -80,8 +81,13 @@ public class ColorConversionUtils {
             return Integer.parseInt(pInput.substring(2), 16);
         }
 
+        if (pInput.matches(simpleHexPattern)) {
+            return Integer.parseInt(pInput, 16);
+        }
+
         return 0xFFFFFF;
     }
+
 
     /**
      * Validates RGB components are in the range 0-255.
