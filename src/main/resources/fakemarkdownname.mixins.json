@@ -6,8 +6,7 @@
 	"mixins": [
 	],
 	"client": [
-        "PlayerMixin",
-		"SocialInteractionsPlayerListMixin"
+        "PlayerMixin"
 	],
 	"minVersion": "0.8"
 }

@@ -41,11 +41,4 @@ public class ChatHandler {
         Component formattedMessage = MarkdownParser.parseMarkdown(originalMessage);
         pEvent.setMessage(formattedMessage);
     }
-
-    @SubscribeEvent
-    public static void onChatReceived(ClientChatReceivedEvent pEvent) {
-        Component originalMessage = pEvent.getMessage();
-        Component formattedMessage = MarkdownParser.parseMarkdown(originalMessage);
-        pEvent.setMessage(formattedMessage);
-    }
 }
