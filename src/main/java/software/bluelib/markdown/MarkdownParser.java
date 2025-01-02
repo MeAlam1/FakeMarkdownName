@@ -95,7 +95,6 @@ public class MarkdownParser {
         formattedMessage = new Spoiler().apply(formattedMessage);
         formattedMessage = new Hyperlink().apply(formattedMessage);
         formattedMessage = new Color().apply(formattedMessage);
-        formattedMessage = new Gradient().apply(formattedMessage);
         //formattedMessage = new CopyToClipboard().apply(formattedMessage, text);
 
         System.out.println("Completed Message: " + formattedMessage);
