@@ -105,13 +105,17 @@ public class Gradient extends MarkdownFeature {
             return;
         }
 
+        if (pColors.size() == 1) {
+            int color = pColors.get(0);
+            pResult.append(Component.literal(pGradientText).setStyle(pOriginalStyle.withColor(TextColor.fromRgb(color))));
+            return;
+        }
+
         char[] characters = pGradientText.toCharArray();
         int textLength = characters.length;
         int colorCount = pColors.size();
-
-        // Calculate segment length
-        int segmentLength = textLength / (colorCount - 1); // Approximate characters per color segment
-        int remainder = textLength % (colorCount - 1); // Handle uneven distribution of characters
+        int segmentLength = textLength / (colorCount - 1);
+        int remainder = textLength % (colorCount - 1);
 
         int charIndex = 0;
 
@@ -119,11 +123,10 @@ public class Gradient extends MarkdownFeature {
             int startColor = pColors.get(colorIndex);
             int endColor = pColors.get(colorIndex + 1);
 
-            // Determine segment length for this pair of colors
             int currentSegmentLength = segmentLength + (colorIndex < remainder ? 1 : 0);
 
             for (int i = 0; i < currentSegmentLength && charIndex < textLength; i++, charIndex++) {
-                float positionRatio = (float) i / (currentSegmentLength - 1); // Ratio within current segment
+                float positionRatio = (float) i / (currentSegmentLength - 1);
                 int interpolatedColor = interpolateColor(startColor, endColor, positionRatio);
 
                 pResult.append(Component.literal(String.valueOf(characters[charIndex]))
